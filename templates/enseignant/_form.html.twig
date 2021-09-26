@@ -1,0 +1,86 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.nom,"Nom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.nom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.nom) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.prenom,"Prenom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.prenom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.prenom) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.telephone,"Telephone") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.telephone, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.telephone) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.cin,"CIN") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.cin, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.cin) }}
+
+            </div>
+            <div class="form-group ">
+                {{ form_label(form.email , 'Mail') }}
+                <div class="form-group">
+                    {{form_widget(form.email, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.email) }}
+
+                </div>
+
+            </div>
+            <div class="form-group ">
+                {{ form_label(form.Specialites , 'Specialite') }}
+                <div class="form-group">
+                    {{form_widget(form.Specialites, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.Specialites) }}
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.experience,"Experience") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.experience, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.experience) }}
+
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.password,"Mot de passe ") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.password, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.password) }}
+
+            </div>
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}

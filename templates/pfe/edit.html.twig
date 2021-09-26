@@ -1,0 +1,111 @@
+{% extends 'baseResponsable.html.twig' %}
+
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+    <h1>Edit Pfe</h1>
+
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.sujet,"Sujet") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.sujet, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.sujet) }}
+
+            </div>
+
+            <div  class="form-group">
+                {{ form_label(form.idSociete,"Nom de la société") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.idSociete, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idSociete) }}
+
+            </div>
+
+
+        </fieldset> </div>
+
+    <div class="col">
+        <fieldset >
+            <div class="form-group">
+                {{ form_label(form.idEncadreur,"Encadreur de la société") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEncadreur, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idEncadreur) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateDebut,"Date début ") }}
+            </div>
+            <div class="row m-2">
+                {{ form_widget(form.dateDebut, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.dateDebut) }}
+
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.dateFin,"Date fin") }}
+            </div>
+            <div class="row m-2">
+                {{ form_widget(form.dateFin, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.dateFin) }}
+
+            </div>
+
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Update') }}</button>
+
+    </div>
+    {{ form_end(form) }}
+
+    <a href="{{ path('pfe_index') }}">back to list</a>
+
+{% endblock %}

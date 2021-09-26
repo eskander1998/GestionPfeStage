@@ -1,0 +1,62 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.nom,"Nom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.nom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.nom) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.prenom,"Prenom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.prenom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.prenom) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.numeroTelephone,"Telephone") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.numeroTelephone, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.numeroTelephone) }}
+
+            </div>
+            <div class="form-group ">
+                {{ form_label(form.idSociete , 'Nom de la société') }}
+                <div class="form-group">
+                    {{form_widget(form.idSociete, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.idSociete) }}
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+                {{ form_label(form.poste,"Poste") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.poste, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.poste) }}
+
+            </div>
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}

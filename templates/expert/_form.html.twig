@@ -1,0 +1,32 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.idEncadreur,"id Encadreur") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEncadreur, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idEncadreur) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.specialite,"Specialite") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.specialite, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.specialite) }}
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}

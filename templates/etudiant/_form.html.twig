@@ -1,0 +1,106 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.nom,"Nom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.nom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.nom) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.prenom,"Prenom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.prenom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.prenom) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.cin,"Cin") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.cin, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.cin) }}
+
+            </div>
+            <div class="form-group ">
+                {{ form_label(form.classe , 'Classe') }}
+                <div class="form-group">
+                    {{form_widget(form.classe, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.classe) }}
+
+                </div>
+
+            </div>
+
+            <div class="form-group ">
+                {{ form_label(form.filiere , 'Filière') }}
+                {% for etudiant in etudiant %}
+                    Champs choisis : {{ etudiant.filiere }}
+                {% endfor %}
+
+                <div class="form-group">
+                    {{form_widget(form.filiere, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.filiere) }}
+
+                </div>
+
+            </div>
+        </fieldset> </div>
+
+    <div class="col">
+        <fieldset >
+            <div class="form-group">
+                {{ form_label(form.telephone,"Telephone") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.telephone, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.telephone) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.mail,"Mail") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.mail, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.mail) }}
+
+            </div>
+
+
+<!--
+            <div class="form-group">
+              {#   {{ form_label(form.idSujetpfe,"Sujet Pfe") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idSujetpfe, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idSujetpfe) }}#}
+
+            </div>
+
+             <div class="form-group">
+            {#    {{ form_label(form.idSociete,"Nom de la société") }} #}
+            </div>
+            <div class="form-group">
+              {#  {{ form_widget(form.idSociete, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idSociete) }} #}
+
+            </div>
+            -->
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+
+    </div>
+{{ form_end(form) }}

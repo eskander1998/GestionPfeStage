@@ -1,0 +1,87 @@
+{% extends 'baseAdmin.html.twig' %}
+
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+    <h1>Responsable index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Enseigant</th>
+                <th>Filière</th>
+
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for responsable in responsables %}
+            <tr>
+                <td>{{ responsable.id }}</td>
+                <td>
+                    {% for enseignant in enseignant %}
+
+                        {% if enseignant.getCin()== responsable.idenseignant%}
+                            <a href="{{ path('enseignant_show', {'id': enseignant.id}) }}">
+                                {{ enseignant.nom }} {{ enseignant.prenom }} <br>
+                                CIN : {{responsable.idenseignant }} </a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ responsable.filiere }}</td>
+
+                <td>
+                    <a  href="{{ path('responsable_delete', {'id': responsable.id,'attr': {'onclick': 'return confirm("Are you sure?")'}}) }}">Delete</a>
+                    <a href="{{ path('responsable_edit', {'id': responsable.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('responsable_new') }}">Create new</a>
+    <script>function confirmer(){
+            var res = confirm("Êtes-vous sûr de vouloir supprimer?");
+            if(!res){
+                window.location= "{{ path('responsable_index' )}}";
+            }
+
+        }</script>
+{% endblock %}

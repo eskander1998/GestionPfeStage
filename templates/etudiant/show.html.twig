@@ -1,0 +1,98 @@
+{% extends 'baseResponsable.html.twig' %}
+
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+    <h1>Etudiant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etudiant.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ etudiant.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ etudiant.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ etudiant.cin }}</td>
+            </tr>
+            <tr>
+                <th>Classe</th>
+                <td>{{ etudiant.classe }}</td>
+            </tr>
+            <tr>
+                <th>Filière</th>
+                <td>{{ etudiant.filiere }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ etudiant.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ etudiant.mail }}</td>
+            </tr>
+            <tr>
+                <th>IdEncadreur</th>
+                <td>{{ etudiant.idEncadreur }}</td>
+            </tr>
+            <tr>
+                <th>IdSujetpfe</th>
+                <td>{{ etudiant.idSujetpfe }}</td>
+            </tr>
+            <tr>
+                <th>IdSociete</th>
+                <td>{{ etudiant.idSociete }}</td>
+            </tr>
+            <tr>
+                <th>DateAjout</th>
+                <td>{{ etudiant.dateAjout ? etudiant.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('etudiant_index') }}">back to list</a>
+
+    <a href="{{ path('etudiant_edit', {'id': etudiant.id}) }}">edit</a>
+
+    {{ include('etudiant/_delete_form.html.twig') }}
+{% endblock %}

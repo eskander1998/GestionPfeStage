@@ -1,0 +1,212 @@
+{% extends 'baseResponsable.html.twig' %}
+ {% block stylesheets %}
+        <Link rel="stylesheet" href="{{asset('Back/js/datepicker.css')}}">
+        <link rel="stylesheet" href="{{ asset('Back/js/jquery.datetimepicker.min.css')}}" type="text/css">
+
+
+
+        <link href="{{ asset('Back/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+        <script src="{{ asset('Back/vendor/jquery/jquery.min.js') }}"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" >
+
+        <!-- Custom fonts for this template-->
+
+        <link href="{{ asset('Back/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link
+                href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+                rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('Back/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles for this page -->
+        <link href="{{ asset('Back/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+    {% endblock %}
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+    <h1>Ajouter un Pfe</h1>
+
+
+
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+            <div class="form-group">
+                {{ form_label(form.sujet,"Sujet") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.sujet, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.sujet) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.Specialites,"Specialite") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.Specialites, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.Specialites) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.idSociete,"Nom de la société") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.idSociete, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idSociete) }}
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                {{ form_label(form.idEncadreur,"Encadreur de la société") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEncadreur, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idEncadreur) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateDebut,"Date début ") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.dateDebut, {'attr':{'class':'form-control'}}) }}
+                   {{ form_errors (form.dateDebut) }}
+
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.dateFin,"Date fin") }}
+            </div>
+            <div class="row m-2">
+                {{ form_widget(form.dateFin, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.dateFin) }}
+
+            </div>
+
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+ <script type="text/javascript" >
+
+/*
+ jQuery(document).ready(function (){
+     $('.datetime').datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            minDate: 0,
+           // format : 'Y/m/d H:m',
+            onShow: function(ct){
+                this.setOptions({
+                    maxDate: $('.datetime2').val()  ? $('.datetime2').val() : false
+                })
+            }
+        });
+ });
+
+ jQuery(document).ready(function (){
+     $('.datetime2').datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            minDate:0,
+            //format : 'Y/m/d H:m',
+
+            onShow: function(ct){
+                this.setOptions({
+                     minDate: $('.datetime').val() ? $('.datetime').val() : false
+
+                })
+            }
+        });
+ });
+
+*/
+var a = $('.datetime').val();
+var someDate = new Date(a);
+var n = someDate.getDate();
+
+someDate.setDate(n + 15); //number  of days to add, e.x. 15 days
+var dateFormated = someDate.toISOString().substr(0,10);
+
+
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('Back/js/datepicker.js')}}"> </script>
+
+    <script src="{{ asset('Back/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script>
+        $('select[data-select="true"]').select2({});
+    </script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('Back/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+
+    <script src="{{ asset('Back/js/google-map.js')}}"></script>
+    <script src="{{ asset('Back/js/jquery.datetimepicker.full.js')}}"></script>
+
+    <script src="{{ asset('Back/js/sb-admin-2.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    <script src="{{ asset('Back/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('Back/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('Back/js/demo/datatables-demo.js')}}"></script>
+{% endblock %}

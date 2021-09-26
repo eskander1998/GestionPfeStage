@@ -1,0 +1,43 @@
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.idEtudiant,"Etudiant ") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEtudiant, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idEtudiant) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.idEnseignant,"Enseignant encadreur") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEnseignant, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idEnseignant) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.idPfe,"Sujet pfe") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.idPfe, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idPfe) }}
+
+            </div>
+
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}

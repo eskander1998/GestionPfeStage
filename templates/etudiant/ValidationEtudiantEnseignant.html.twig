@@ -1,0 +1,99 @@
+{% extends 'baseEnseignant.html.twig' %}
+
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+
+
+
+    <h1>Dates clés </h1>
+
+
+    <div class="table-responsive">
+
+        <div class="container" >
+            <table class="table table-bordered"    >
+                <thead class="thead-dark">
+                <tr>
+
+                    <th>Sujet Pfe</th>
+                    <th>Début du stage</th>
+                    <th>Validation 1</th>
+                    <th>Bilan périodique début stage</th>
+                    <th>Bilan périodique milieu stage</th>
+                    <th>Bilan périodique fin stage</th>
+                    <th>fin du stage</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for AfficherValidationEnseignant in AfficherValidationEnseignant %}
+                    <tr>
+                        <td>{{ AfficherValidationEnseignant.sujet }}</td>
+                        <td>{{ AfficherValidationEnseignant.dateDebut  ? AfficherValidationEnseignant.dateDebut|date('d-m-Y') : '' }} </td>
+                        <td>{{ AfficherValidationEnseignant.validation1  ? AfficherValidationEnseignant.validation1|date('d-m-Y') : '' }}
+                            <br> <a style="color: #0b0b0b; font-weight: bold;font-size: large">Etat :</a>{% if "now"|date("d-m-Y") > AfficherValidationEnseignant.validation1|date("d-m-Y") %} <a style="color: #00dd1c; font-weight: bold;font-size: large">effectue </a> {% else %}  <a style="color: #e12717; font-weight: bold;font-size: large">A venir </a>  {% endif %}
+                        </td>
+                        <td>{{ AfficherValidationEnseignant.validation2 ? AfficherValidationEnseignant.validation2|date('d-m-Y ') : '' }}
+                            <br> <a style="color: #0b0b0b; font-weight: bold;font-size: large">Etat :</a>{% if "now"|date("d-m-Y") > AfficherValidationEnseignant.validation2|date("d-m-Y") %}  <a style="color: #00dd1c; font-weight: bold;font-size: large">effectue </a>  {% else %} <a style="color: #e12717; font-weight: bold;font-size: large">A venir </a> {% endif %}
+                        </td>
+                        <td>{{ AfficherValidationEnseignant.validation3 ? AfficherValidationEnseignant.validation3|date('d-m-Y ') : '' }}
+                            <br> <a style="color: #0b0b0b; font-weight: bold;font-size: large">Etat :</a>{% if "now"|date("d-m-Y") > AfficherValidationEnseignant.validation3|date("d-m-Y") %}  <a style="color: #00dd1c; font-weight: bold;font-size: large">effectue </a>  {% else %} <a style="color: #e12717; font-weight: bold;font-size: large">A venir </a> {% endif %}
+                        </td>
+                        <td>{{ AfficherValidationEnseignant.validation4 ? AfficherValidationEnseignant.validation4|date('d-m-Y') : '' }}
+                            <br> <a style="color: #0b0b0b; font-weight: bold;font-size: large">Etat :</a>{% if "now"|date("d-m-Y") > AfficherValidationEnseignant.validation4|date("d-m-Y") %}  <a style="color: #00dd1c; font-weight: bold;font-size: large">effectue </a>  {% else %} <a style="color: #e12717; font-weight: bold;font-size: large">A venir </a> {% endif %}
+                        </td>
+                        <td>{{ AfficherValidationEnseignant.dateFin  ? AfficherValidationEnseignant.dateFin|date('d-m-Y
+') : '' }} </td>
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+    <a href="{{ path('etudiant_new') }}">Create new</a>
+
+    <script>
+        function confirmer(){
+            var res = confirm("Confirmer la suppression");
+            if(res==false){
+            }}
+    </script>
+{% endblock %}

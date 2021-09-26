@@ -1,0 +1,140 @@
+{% extends 'baseResponsable.html.twig' %}
+
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+
+
+
+    <h1>Les étudiants que vous encadrez</h1>
+
+
+    <div class="table-responsive">
+
+        <div class="container" >
+            <table class="table table-bordered"  style="white-space: inherit;width: 0%" cellspacing="0"  >
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Cin</th>
+                    <th>Classe</th>
+                    <th>Filière</th>
+
+                    <th>Telephone</th>
+                    <th>Mail</th>
+
+                    <th>Enseignant Encadreur</th>
+                    <th>Sujet pfe</th>
+                    <th>Société</th>
+                    <th>DateAjout</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for etudiant in etudiants %}
+                    <tr>
+                        <td>{{ etudiant.id }}</td>
+                        <td>{{ etudiant.nom }}</td>
+                        <td>{{ etudiant.prenom }}</td>
+                        <td>{{ etudiant.cin }}</td>
+                        <td>{{ etudiant.classe }}</td>
+                        <td>{{ etudiant.filiere }}</td>
+                        <td>{{ etudiant.telephone }}</td>
+                        <td>{{ etudiant.mail }}</td>
+
+                        <td>
+                            {% if etudiant.idEncadreur=='' %}  Non renseignee {% endif %}
+                            {% for enseignant in enseignant %}
+
+                                {% if enseignant.getCin()==etudiant.idEncadreur%}
+                                    <a href="{{ path('enseignant_show', {'id': enseignant.id}) }}">
+                                        {{ enseignant.nom }} {{ enseignant.prenom }}
+                                        CIN : {{etudiant.idEncadreur }} </a>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+
+                        <td>
+                            {% if etudiant.idSujetpfe=='' %}  Non renseignee {% endif %}
+                            {% for pfe in pfe %}
+                                {% if pfe.getSujet()==etudiant.idSujetpfe %}
+                                    <a href="{{ path('pfe_show', {'id': pfe.getId()}) }}">
+                                        {{ etudiant.idSujetpfe }}</a>
+                                {% else %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+
+                        <td>
+                            {% for pfe in pfe %}
+                                {% for societe in societe %}
+                                    {% if pfe.getSujet()==etudiant.idSujetpfe %}
+
+                                        <a href="{{ path('societe_show', {'id': societe.getId()}) }}">
+                                            {{ pfe.idSociete }} </a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </td>
+
+
+
+                        <td>{{ etudiant.dateAjout ? etudiant.dateAjout|date('Y-m-d H:i:s') : '' }}</td>
+
+                        <td>
+                            <a onclick="confirmer()" href="{{ path('etudiant_delete', {'id': etudiant.id}) }}" class="btn btn-danger btn-circle btn-lg">Delete</a>
+                            <a href="{{ path('etudiant_edit', {'id': etudiant.id}) }}" class="btn btn-secondary btn-circle btn-lg">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="11">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div></div>
+    <a href="{{ path('etudiant_new') }}">Create new</a>
+
+    <script>
+        function confirmer(){
+            var res = confirm("Confirmer la suppression");
+            if(res==false){
+            }}
+    </script>
+{% endblock %}

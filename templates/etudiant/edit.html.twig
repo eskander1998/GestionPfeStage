@@ -1,0 +1,207 @@
+{% extends 'baseResponsable.html.twig' %}
+
+
+{%  block menu %}
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Les responsables:</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ path('societe_index') }}">Gérer les sociétes</a>
+                <a class="collapse-item" href="{{ path('encadrant_societe_index') }}">Gérer les encadrants </a>
+                <a class="collapse-item" href="{{ path('pfe_index') }} ">Gérer les PFEs</a>
+                <a class="collapse-item" href="{{ path('etudiant_index') }}">Gérer les étudiants </a>
+                <a class="collapse-item" href="{{ path('affectation_index') }}">Affectation des étudiants </a>
+            </div>
+        </div>
+    </li>
+
+{% for user in user %}
+{% if user.getEmail()==app.session.get('email') %}
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+           aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Enseignant</span>
+        </a>
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ path('etudiant_index') }}">Gérer les étudiants</a>
+                <a class="collapse-item" href="">Recommandations pour expertise</a>
+
+            </div>
+        </div>
+    </li>
+
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item">
+        <a class="nav-link" href="">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Statistique</span></a>
+    </li>
+
+{% endblock %}
+
+ {% block notif %}
+     <!-- Nav Item - Alerts -->
+     <li class="nav-item dropdown no-arrow mx-1">
+         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <i class="fas fa-bell fa-fw"></i>
+             <!-- Counter - Alerts -->
+             <span class="badge badge-danger badge-counter" value=""></span>
+         </a>
+         <!-- Dropdown - Alerts -->
+         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="alertsDropdown">
+             <h6 class="dropdown-header">
+                 Notifications
+             </h6>
+
+             <a class="dropdown-item d-flex align-items-center" href=" ">
+                 <div class="mr-3">
+                     <div class="icon-circle bg-primary">
+                         <i class="fas fa-file-alt text-white"></i>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="small text-gray-500"></div>
+                     <span class="font-weight-bold"></span>
+                 </div>
+             </a>
+         </div>
+     </li>
+ {% endblock %}
+
+{% block title %}Etudiant index{% endblock %}
+
+{% block container %}
+    <h1>Edit Etudiant</h1>
+
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+
+            <div class="form-group">
+                {{ form_label(form.nom,"Nom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.nom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.nom) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.prenom,"Prenom") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.prenom, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.prenom) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.cin,"Cin") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.cin, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.cin) }}
+
+            </div>
+            <div class="form-group ">
+                {{ form_label(form.classe , 'Classe') }}
+                <div class="form-group">
+                    {{form_widget(form.classe, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.classe) }}
+
+                </div>
+
+            </div>
+
+            <div class="form-group ">
+                {{ form_label(form.filiere , 'Filière') }}
+
+
+                <div class="form-group">
+                    {{form_widget(form.filiere, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors (form.filiere) }}
+
+                </div>
+
+            </div>
+        </fieldset> </div>
+
+    <div class="col">
+        <fieldset >
+            <div class="form-group">
+                {{ form_label(form.telephone,"Telephone") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.telephone, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.telephone) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.mail,"Mail") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.mail, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.mail) }}
+
+            </div>
+            <!--   <div class="form-group">
+               {#  {{ form_label(form.idEncadreur,"Enseignant encadreur ") }} #}
+            </div>
+            <div class="form-group">
+               {#  {{ form_widget(form.idEncadreur, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idEncadreur) }} #}
+
+            </div>
+
+
+            <div class="form-group">
+              {#   {{ form_label(form.idSujetpfe,"Sujet Pfe") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idSujetpfe, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idSujetpfe) }}#}
+
+            </div>
+
+             <div class="form-group">
+            {#    {{ form_label(form.idSociete,"Nom de la société") }} #}
+            </div>
+            <div class="form-group">
+              {#  {{ form_widget(form.idSociete, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.idSociete) }} #}
+
+            </div>
+            -->
+
+            {% for etudiantt in etudiantt %}
+              <a> Champs choisis : {{ etudiantt.nom }}</a>
+            {% endfor %}
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+
+    </div>
+    {{ form_end(form) }}
+
+
+    <a href="{{ path('etudiant_index') }}">back to list</a>
+
+    {{ include('etudiant/_delete_form.html.twig') }}
+{% endblock %}

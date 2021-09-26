@@ -1,0 +1,102 @@
+{% block body %}
+
+
+{{ form_start(form,{'attr':{'novalidate': 'novalidate'}}) }}
+
+
+
+<div class="row">
+
+    <div class="col">
+        <fieldset >
+
+
+            <div class="form-group">
+                {{ form_label(form.sujet,"Sujet") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.sujet, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.sujet) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.Specialites,"Specialite") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.Specialites, {'attr':{'class':'form-control '}}) }}
+                {{ form_errors (form.Specialites) }}
+
+            </div>
+            <div  class="form-group">
+                {{ form_label(form.idSociete,"Nom de la société") }}
+            </div>
+            <div id = "lieudiv" class="form-group">
+                {{ form_widget(form.idSociete, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idSociete) }}
+
+            </div>
+
+
+
+        </fieldset> </div>
+
+    <div class="col">
+        <fieldset >
+            <div class="form-group">
+                {{ form_label(form.idEncadreur,"Encadreur de la société") }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.idEncadreur, {'attr':{'class':'form-control'}}) }}
+                {{ form_errors (form.idEncadreur) }}
+
+            </div>
+            <div class="form-group">
+                {{ form_label(form.dateDebut,"Date début ") }}
+            </div>
+            <div class="row m-2">
+                {{ form_widget(form.dateDebut, {'attr':{'class':'form-control ','id': 'datetime'}}) }}
+                {{ form_errors (form.dateDebut) }}
+
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.dateFin,"Date fin") }}
+            </div>
+            <div class="row m-2">
+                {{ form_widget(form.dateFin, {'attr':{'class':'form-control ','id': 'datetime2'}}) }}
+                {{ form_errors (form.dateFin) }}
+
+            </div>
+
+
+
+        </fieldset>
+        <button class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+    </div>
+    {{ form_end(form) }}
+
+    <script type="text/javascript" >
+        $('#datetime').datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            minDate: 0,
+            onShow: function(ct){
+                this.setOptions({
+                    maxDate: $('#datetime2').val() ? $('#datetime2').val() : false
+                })
+            }
+        })
+
+        $("#datetime2").datetimepicker({
+            timepicker: true,
+            datepicker: true,
+            onShow: function(ct){
+                this.setOptions({
+                    minDate: $('#datetime').val().format() ? $('#datetime').val().format() : false
+                })
+            }
+        })
+    </script>
+{% endblock %}
